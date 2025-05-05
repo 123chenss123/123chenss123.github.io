@@ -3,161 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>电视入户测量系统</title>
-    <link href="https://s2.ssl.qhres2.com/static/56662140ef7d5d03.css"  rel="stylesheet">
-    <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-100-M/font-awesome/6.0.0/css/all.min.css"  rel="stylesheet">
+    <title>TCL大屏电视入户勘测系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"  rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
     <style>
         :root {
-            --primary: #3a86ff;
-            --secondary: #8338ec;
-            --accent: #ff006e;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
+            --tcl-red: #e60012;
+            --tcl-gray: #f5f5f5;
+            --tcl-dark: #333333;
+            --tcl-light: #ffffff;
         }
         
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f5f7fa;
-            color: var(--dark);
-            line-height: 1.6;
+            background-color: var(--tcl-gray);
+            color: var(--tcl-dark);
         }
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+        .header {
+            background: linear-gradient(135deg, var(--tcl-red), #c5000f);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            height: 60px;
+            transition: all 0.3s ease;
         }
         
         .card {
-            background-color: white;
+            background-color: var(--tcl-light);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 25px;
-            margin-bottom: 25px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .header h1 {
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 2.2rem;
-        }
-        
-        .header p {
-            color: #6c757d;
-            font-size: 1.1rem;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        input[type="number"], 
-        input[type="text"],
-        select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ced4da;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-        
-        input[type="number"]:focus, 
-        input[type="text"]:focus,
-        select:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
         }
         
         .btn-primary {
-            background-color: var(--primary);
-            color: white;
+            background-color: var(--tcl-red);
+            color: var(--tcl-light);
+            transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
-            background-color: #2a75e6;
+            background-color: #c5000f;
             transform: translateY(-2px);
         }
         
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
-        
-        .measurement-image {
-            width: 100%;
+        .measurement-img {
             border-radius: 8px;
-            margin: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
         
-        .result {
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            display: none;
+        .measurement-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
         
-        .result-success {
-            background-color: rgba(40, 167, 69, 0.1);
-            border-left: 4px solid var(--success);
-            color: var(--success);
+        .tab-active {
+            border-bottom: 3px solid var(--tcl-red);
+            color: var(--tcl-red);
+            font-weight: 600;
         }
         
-        .result-warning {
-            background-color: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid var(--warning);
-            color: var(--warning);
-        }
-        
-        .result-danger {
-            background-color: rgba(220, 53, 69, 0.1);
-            border-left: 4px solid var(--danger);
-            color: var(--danger);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active  {
-            display: block;
-            animation: fadeIn 0.5s ease;
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
         }
         
         @keyframes fadeIn {
@@ -165,829 +79,837 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .nav-tabs {
-            display: flex;
-            border-bottom: 1px solid #dee2e6;
-            margin-bottom: 20px;
+        .success-box {
+            border-left: 5px solid #4CAF50;
+            background-color: rgba(76, 175, 80, 0.1);
         }
         
-        .nav-tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            font-weight: 600;
-            color: #6c757d;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-tab.active  {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-        
-        .nav-tab:hover:not(.active) {
-            color: var(--dark);
-            border-bottom-color: rgba(58, 134, 255, 0.3);
-        }
-        
-        .dimension-guide {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            border-left: 3px solid var(--primary);
-        }
-        
-        .dimension-guide h4 {
-            margin-top: 0;
-            color: var(--primary);
-        }
-        
-        .dimension-guide ol {
-            padding-left: 20px;
-        }
-        
-        .dimension-guide li {
-            margin-bottom: 8px;
-        }
-        
-        .recommendation {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            display: none;
-        }
-        
-        .recommendation h3 {
-            margin-top: 0;
-            color: var(--primary);
-        }
-        
-        .tv-model {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .tv-model:hover {
-            background-color: #f1f8ff;
-        }
-        
-        .tv-model.selected  {
-            background-color: rgba(58, 134, 255, 0.1);
-            border: 1px solid var(--primary);
-        }
-        
-        .tv-model img {
-            width: 80px;
-            height: 60px;
-            object-fit: contain;
-            margin-right: 15px;
-            border-radius: 4px;
-        }
-        
-        .tv-model-info h4 {
-            margin: 0 0 5px 0;
-            color: var(--dark);
-        }
-        
-        .tv-model-info p {
-            margin: 0;
-            color: #6c757d;
-            font-size: 14px;
-        }
-        
-        .progress-bar {
-            height: 5px;
-            background-color: #e9ecef;
-            border-radius: 3px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background-color: var(--primary);
-            width: 33%;
-            transition: width 0.5s ease;
-        }
-        
-        .step-indicator {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            flex: 1;
-        }
-        
-        .step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            right: -50%;
-            height: 2px;
-            background-color: #e9ecef;
-            z-index: 1;
-        }
-        
-        .step.active:not(:last-child)::after  {
-            background-color: var(--primary);
-        }
-        
-        .step-number {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #6c757d;
-            margin-bottom: 5px;
-            z-index: 2;
-        }
-        
-        .step.active  .step-number {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .step.completed  .step-number {
-            background-color: var(--success);
-            color: white;
-        }
-        
-        .step-label {
-            font-size: 12px;
-            color: #6c757d;
-            text-align: center;
-        }
-        
-        .step.active  .step-label,
-        .step.completed  .step-label {
-            color: var(--dark);
-            font-weight: 600;
+        .warning-box {
+            border-left: 5px solid #FFC107;
+            background-color: rgba(255, 193, 7, 0.1);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>电视入户测量系统</h1>
-            <p>Precision Measurement for Perfect Installation</p>
-        </div>
-        
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
-        
-        <div class="step-indicator">
-            <div class="step active" id="step1">
-                <div class="step-number">1</div>
-                <div class="step-label">选择电视型号</div>
+<body class="min-h-screen">
+    <!-- 顶部导航栏 -->
+    <header class="header text-white py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="1.png"  alt="TCL Logo" class="logo">
+                <h1 class="text-2xl font-bold hidden md:block">大屏电视入户勘测系统</h1>
             </div>
-            <div class="step" id="step2">
-                <div class="step-number">2</div>
-                <div class="step-label">入户测量</div>
-            </div>
-            <div class="step" id="step3">
-                <div class="step-number">3</div>
-                <div class="step-label">安装勘测</div>
+            <div class="text-sm">
+                <span class="hidden md:inline-block">客户服务热线: 400-812-3456</span>
+                <i class="fas fa-phone-alt ml-2"></i>
             </div>
         </div>
-        
-        <!-- 电视型号选择 -->
-        <div class="card" id="tv-selection">
-            <h2>1. 选择电视型号</h2>
-            <div class="form-group">
-                <label for="tv-model">电视型号</label>
-                <select id="tv-model" class="form-control">
-                    <option value="">请选择电视型号</option>
-                    <option value="98C78K">TCL 98C78K (98英寸)</option>
-                    <option value="98Z11K Pro">TCL 98Z11K Pro (98英寸)</option>
-                    <option value="98Q10L">TCL 98Q10L (98英寸)</option>
-                    <option value="85Q9K"> TCL 85Q9K (85英寸)</option>
-                    <option value="98X11G">TCL 98X11G (98英寸)</option>
-                </select>
-            </div>
-            <button class="btn btn-primary btn-block" id="next-to-measurement">下一步</button>
-        </div>
-        
-        <!-- 入户测量 -->
-        <div class="card" id="measurement-section" style="display: none;">
-            <h2>2. 入户测量</h2>
-            
-            <div class="nav-tabs">
-                <div class="nav-tab active" data-tab="elevator">电梯入户</div>
-                <div class="nav-tab" data-tab="hallway">楼道入户</div>
-                <div class="nav-tab" data-tab="hoisting">吊装入户</div>
-            </div>
-            
-            <!-- 电梯入户 -->
-            <div class="tab-content active" id="elevator-tab">
-                <p>请测量电梯尺寸并填写以下信息：</p>
-                <img src="12ec73d1ee2fb0a74464ecbe9c01b55.png"  alt="电梯测量示意图" class="measurement-image">
+    </header>
+ 
+    <main class="container mx-auto px-4 py-8">
+        <!-- 主内容区域 -->
+        <div id="app" class="max-w-6xl mx-auto">
+            <!-- 步骤1: 选择电视型号和安装楼层 -->
+            <div id="step1" class="card p-6 mb-8 fade-in">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">1. 选择电视型号和安装楼层</h2>
                 
-                <div class="form-group">
-                    <label for="elevator-door-height">电梯门框高度 (mm)</label>
-                    <input type="number" id="elevator-door-height" placeholder="请输入电梯门框高度">
-                </div>
-                
-                <div class="form-group">
-                    <label for="elevator-door-width">电梯门框宽度 (mm)</label>
-                    <input type="number" id="elevator-door-width" placeholder="请输入电梯门框宽度">
-                </div>
-                
-                <div class="form-group">
-                    <label for="elevator-depth">电梯轿厢深度 (mm)</label>
-                    <input type="number" id="elevator-depth" placeholder="请输入电梯轿厢深度">
-                </div>
-                
-                <div class="dimension-guide">
-                    <h4>测量指南：</h4>
-                    <ol>
-                        <li>使用卷尺测量电梯门框的高度和宽度</li>
-                        <li>测量电梯轿厢内部的深度</li>
-                        <li>确保测量时卷尺保持水平或垂直</li>
-                        <li>记录最小尺寸值</li>
-                    </ol>
-                </div>
-                
-                <button class="btn btn-primary btn-block" id="check-elevator">检查入户条件</button>
-                
-                <div class="result" id="elevator-result"></div>
-            </div>
-            
-            <!-- 楼道入户 -->
-            <div class="tab-content" id="hallway-tab">
-                <p>请测量楼道尺寸并填写以下信息：</p>
-                <img src="45de6e2cfaf91042e0823d636296617.png"  alt="楼道测量示意图" class="measurement-image">
-                
-                <div class="form-group">
-                    <label for="hallway-turn-width">楼道转角宽度 (mm)</label>
-                    <input type="number" id="hallway-turn-width" placeholder="请输入楼道转角宽度">
-                </div>
-                
-                <div class="form-group">
-                    <label for="hallway-rail-depth">楼道转角扶手深度 (mm)</label>
-                    <input type="number" id="hallway-rail-depth" placeholder="请输入楼道转角扶手深度">
-                </div>
-                
-                <div class="form-group">
-                    <label for="hallway-turn-height">楼道转角高度 (mm)</label>
-                    <input type="number" id="hallway-turn-height" placeholder="请输入楼道转角高度">
-                </div>
-                
-                <div class="dimension-guide">
-                    <h4>测量指南：</h4>
-                    <ol>
-                        <li>测量楼道最窄处的转角宽度</li>
-                        <li>测量转角处扶手的突出深度</li>
-                        <li>测量转角处的最低高度</li>
-                        <li>注意测量所有可能阻碍搬运的障碍物</li>
-                    </ol>
-                </div>
-                
-                <button class="btn btn-primary btn-block" id="check-hallway">检查入户条件</button>
-                
-                <div class="result" id="hallway-result"></div>
-            </div>
-            
-            <!-- 吊装入户 -->
-            <div class="tab-content" id="hoisting-tab">
-                <p>请测量阳台/窗户尺寸并填写以下信息：</p>
-                <img src="c9.png"  alt="吊装测量示意图" class="measurement-image">
-                
-                <div class="form-group">
-                    <label for="window-height">阳台/窗户高度 (mm)</label>
-                    <input type="number" id="window-height" placeholder="请输入阳台/窗户高度">
-                </div>
-                
-                <div class="form-group">
-                    <label for="window-width">阳台/窗户宽度 (mm)</label>
-                    <input type="number" id="window-width" placeholder="请输入阳台/窗户宽度">
-                </div>
-                
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="agree-hoisting"> 我了解并同意吊装入户的额外费用 
-                    </label>
-                </div>
-                
-                <div class="dimension-guide">
-                    <h4>测量指南：</h4>
-                    <ol>
-                        <li>测量阳台或窗户的开口高度</li>
-                        <li>测量阳台或窗户的开口宽度</li>
-                        <li>确保测量的是实际可通行空间</li>
-                        <li>注意窗框或阳台栏杆的限制</li>
-                    </ol>
-                </div>
-                
-                <button class="btn btn-primary btn-block" id="check-hoisting">检查入户条件</button>
-                
-                <div class="result" id="hoisting-result"></div>
-            </div>
-            
-            <div class="recommendation" id="recommendation-section">
-                <h3>根据您的测量数据，我们推荐以下型号：</h3>
-                <div class="tv-model" data-model="98C12G">
-                    <img src="https://s2.ssl.qhres2.com/static/5e5d5d9a7a8d8f8f.svg"  alt="85Q9K">
-                    <div class="tv-model-info">
-                        <h4>98T7H (98英寸)</h4>
-                        <p>电梯入户最小要求：门框高2000mm × 宽1100mm</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 电视型号选择 -->
+                    <div>
+                        <label for="tvModel" class="block text-lg font-medium text-gray-700 mb-2">选择电视型号</label>
+                        <select id="tvModel" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                            <option value="">-- 请选择电视型号 --</option>
+                            <option value="98C78K">98C78K</option>
+                            <option value="98Z11K Pro">98Z11K Pro</option>
+                            <option value="98Q10L">98Q10L</option>
+                            <option value="98Q10L Pro">98Q10L Pro</option>
+                            <option value="98C12K">98C12K</option>
+                            <option value="98P12K">98P12K</option>
+                            <option value="98T6L-C">98T6L-C</option>
+                            <option value="98T6L">98T6L</option>
+                            <option value="98P11K">98P11K</option>
+                            <option value="98T7L Pro">98T7L Pro</option>
+                            <option value="98T7L">98T7L</option>
+                            <option value="98Q9L Pro">98Q9L Pro</option>
+                            <option value="98Q9L-C">98Q9L-C</option>
+                            <option value="98Q6G">98Q6G</option>
+                            <option value="98C11K">98C11K</option>
+                            <option value="98GA2">98GA2</option>
+                            <option value="98T8H">98T8H</option>
+                            <option value="98C11H">98C11H</option>
+                            <option value="98Q6K">98Q6K</option>
+                            <option value="98X11H">98X11H</option>
+                            <option value="98T7K">98T7K</option>
+                            <option value="98Q10K Pro">98Q10K Pro</option>
+                            <option value="98Q10K">98Q10K</option>
+                            <option value="98Q9K">98Q9K</option>
+                            <option value="98C12H">98C12H</option>
+                            <option value="98G60E">98G60E</option>
+                            <option value="98Q6H">98Q6H</option>
+                            <option value="98GA1">98GA1</option>
+                            <option value="98Q10G Pro">98Q10G Pro</option>
+                            <option value="98C12G">98C12G</option>
+                            <option value="98T7H">98T7H</option>
+                            <option value="98X11G">98X11G</option>
+                            <option value="M98A">M98A</option>
+                        </select>
+                        
+                        <!-- 电视尺寸显示 -->
+                        <div id="tvDimensions" class="mt-4 p-4 bg-gray-50 rounded-lg hidden">
+                            <h3 class="font-medium text-gray-700 mb-2">电视尺寸信息</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-500">裸机尺寸 (长×厚×高)</p>
+                                    <p id="nakedSize" class="font-medium">-- mm × -- mm × -- mm</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">包装箱尺寸 (长×厚×高)</p>
+                                    <p id="packageSize" class="font-medium">-- mm × -- mm × -- mm</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="tv-model" data-model="98X11G">
-                    <img src="https://s2.ssl.qhres2.com/static/6e5d5d9a7a8d8f8f.svg"  alt="TCL 98X11G">
-                    <div class="tv-model-info">
-                        <h4>Hisense 75Q10G (75英寸)</h4>
-                        <p>电梯入户最小要求：门框高1900mm × 宽1000mm</p>
-                    </div>
-                </div>
-                <div class="tv-model" data-model="98T7H">
-                    <img src="https://s2.ssl.qhres2.com/static/4e5d5d9a7a8d8f8f.svg"  alt="98T7H">
-                    <div class="tv-model-info">
-                        <h4>TCL 98T7H (98英寸)</h4>
-                        <p>电梯入户最小要求：门框高1800mm × 宽900mm</p>
+                    
+                    <!-- 安装楼层选择 -->
+                    <div>
+                        <label for="floorType" class="block text-lg font-medium text-gray-700 mb-2">安装楼层类型</label>
+                        <select id="floorType" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                            <option value="">-- 请选择安装楼层类型 --</option>
+                            <option value="1">1层/平房/别墅</option>
+                            <option value="other">其他楼层</option>
+                        </select>
+                        
+                        <!-- 其他楼层额外信息 -->
+                        <div id="otherFloorInfo" class="mt-4 hidden">
+                            <label for="floorNumber" class="block text-sm font-medium text-gray-700 mb-1">具体楼层</label>
+                            <input type="number" id="floorNumber" min="2" max="100" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入楼层数字">
+                        </div>
                     </div>
                 </div>
                 
-                <button class="btn btn-primary btn-block" id="select-recommended" style="margin-top: 20px; display: none;">选择此型号并继续</button>
+                <div class="mt-8 flex justify-end">
+                    <button id="nextStep1" class="btn-primary px-6 py-3 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        下一步 <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
             </div>
             
-            <button class="btn btn-primary btn-block" id="next-to-installation" style="display: none;">下一步</button>
+            <!-- 步骤2: 入户勘测选择 -->
+            <div id="step2" class="card p-6 mb-8 hidden">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">2. 选择入户勘测方式</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-4 text-center cursor-pointer hover:bg-gray-50 transition-all duration-200 border-2 border-transparent hover:border-red-200 rounded-lg" onclick="selectSurveyMethod('elevator')">
+                        <div class="bg-red-100 p-4 rounded-full inline-block mb-3">
+                            <i class="fas fa-elevator text-red-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">电梯测量</h3>
+                        <p class="text-gray-600">适用于有电梯且尺寸足够的住宅</p>
+                    </div>
+                    
+                    <div class="card p-4 text-center cursor-pointer hover:bg-gray-50 transition-all duration-200 border-2 border-transparent hover:border-red-200 rounded-lg" onclick="selectSurveyMethod('staircase')">
+                        <div class="bg-blue-100 p-4 rounded-full inline-block mb-3">
+                            <i class="fas fa-stairs text-blue-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">楼道测量</h3>
+                        <p class="text-gray-600">适用于无电梯或电梯尺寸不足的住宅</p>
+                    </div>
+                    
+                    <div class="card p-4 text-center cursor-pointer hover:bg-gray-50 transition-all duration-200 border-2 border-transparent hover:border-red-200 rounded-lg" onclick="selectSurveyMethod('window')">
+                        <div class="bg-green-100 p-4 rounded-full inline-block mb-3">
+                            <i class="fas fa-window-maximize text-green-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">阳台/窗户测量</h3>
+                        <p class="text-gray-600">适用于需要吊装入户的情况</p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between">
+                    <button onclick="backToStep(1)" class="px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50">
+                        <i class="fas fa-arrow-left mr-2"></i> 上一步 
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 步骤3A: 电梯测量 -->
+            <div id="step3A" class="card p-6 mb-8 hidden">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">3. 电梯测量 (电梯入户)</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="elevatorDoorWidth" class="block text-sm font-medium text-gray-700">电梯门框宽度 (A, mm)</label>
+                                <input type="number" id="elevatorDoorWidth" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入电梯门框宽度">
+                            </div>
+                            
+                            <div>
+                                <label for="elevatorDoorHeight" class="block text-sm font-medium text-gray-700">电梯门框高度 (B, mm)</label>
+                                <input type="number" id="elevatorDoorHeight" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入电梯门框高度">
+                            </div>
+                            
+                            <div>
+                                <label for="elevatorCabinDepth" class="block text-sm font-medium text-gray-700">电梯轿厢深度 (C, mm)</label>
+                                <input type="number" id="elevatorCabinDepth" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入电梯轿厢深度">
+                            </div>
+                            
+                            <div>
+                                <label for="elevatorCabinDiagonal" class="block text-sm font-medium text-gray-700">电梯轿厢对角线 (Y, mm)</label>
+                                <input type="number" id="elevatorCabinDiagonal" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入电梯轿厢对角线长度">
+                                <p class="text-xs text-gray-500 mt-1">注: 若无法测量对角线，系统将根据门框尺寸自动计算</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="mb-4">
+                            <h3 class="font-medium text-gray-700 mb-2">测量示意图</h3>
+                            <div class="flex space-x-2 mb-3">
+                                <button id="showVerticalImg" class="px-3 py-1 text-sm rounded border border-red-500 text-red-500 hover:bg-red-50">裸机竖立入户</button>
+                                <button id="showStandingImg" class="px-3 py-1 text-sm rounded border border-gray-300 hover:bg-gray-50">裸机直立入户</button>
+                            </div>
+                            
+                            <div id="elevatorVerticalImg" class="">
+                                <img src="2.jpg"  alt="电梯裸机竖立入户测量示意图" class="measurement-img w-full h-auto">
+                                <p class="text-sm text-gray-600 mt-2">裸机竖立入户需测量电梯门框宽度A、高度B和轿厢深度C</p>
+                            </div>
+                            
+                            <div id="elevatorStandingImg" class="hidden">
+                                <img src="3.jpg"  alt="电梯裸机直立入户测量示意图" class="measurement-img w-full h-auto">
+                                <p class="text-sm text-gray-600 mt-2">裸机直立入户需测量电梯轿厢对角线Y</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-between">
+                    <button onclick="backToStep(2)" class="px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50">
+                        <i class="fas fa-arrow-left mr-2"></i> 上一步 
+                    </button>
+                    <button id="checkElevator" class="btn-primary px-6 py-3 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        检查入户条件 <i class="fas fa-check ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 步骤3B: 楼道测量 -->
+            <div id="step3B" class="card p-6 mb-8 hidden">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">3. 楼道测量 (楼道入户)</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="stairTurnWidth" class="block text-sm font-medium text-gray-700">楼道转角宽度 (A, mm)</label>
+                                <input type="number" id="stairTurnWidth" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入楼道转角宽度">
+                            </div>
+                            
+                            <div>
+                                <label for="stairRailDepth" class="block text-sm font-medium text-gray-700">楼道转角扶手深度 (B, mm)</label>
+                                <input type="number" id="stairRailDepth" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入楼道转角扶手深度">
+                            </div>
+                            
+                            <div>
+                                <label for="stairTurnHeight" class="block text-sm font-medium text-gray-700">楼道转角高度 (H, mm)</label>
+                                <input type="number" id="stairTurnHeight" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入楼道转角高度">
+                            </div>
+                        </div>
+                        
+                        <!-- 楼道搬运费用说明 -->
+                        <div class="mt-6 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                            <h4 class="font-medium text-yellow-800 mb-2">楼道搬运收费说明</h4>
+                            <p class="text-sm text-yellow-700">您选购的98英寸大屏产品需从楼道搬运至户内时，费用说明如下：</p>
+                            <ul class="list-disc pl-5 mt-2 text-sm text-yellow-700 space-y-1">
+                                <li>楼层服务标准：3层及以下（含3层）免收人工搬运费</li>
+                                <li>超3层服务：超出3层部分，每层加收50元超楼层搬运服务费</li>
+                            </ul>
+                            <p id="stairFeeInfo" class="font-medium mt-3 text-yellow-800 hidden">您需支付的超楼层搬运服务费总额为 <span id="stairFeeAmount">0</span> 元。</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="mb-4">
+                            <h3 class="font-medium text-gray-700 mb-2">测量示意图</h3>
+                            <div class="flex space-x-2 mb-3">
+                                <button id="showStairStandingImg" class="px-3 py-1 text-sm rounded border border-red-500 text-red-500 hover:bg-red-50">裸机直立入户</button>
+                                <button id="showStairPackageStandingImg" class="px-3 py-1 text-sm rounded border border-gray-300 hover:bg-gray-50">带包装直立入户</button>
+                                <button id="showStairPackageVerticalImg" class="px-3 py-1 text-sm rounded border border-gray-300 hover:bg-gray-50">带包装竖立入户</button>
+                            </div>
+                            
+                            <div id="stairStandingImg" class="">
+                                <img src="4.jpg"  alt="楼道裸机直立入户测量示意图" class="measurement-img w-full h-auto">
+                                <p class="text-sm text-gray-600 mt-2">裸机直立入户需测量楼道转角宽度A和扶手深度B</p>
+                            </div>
+                            
+                            <div id="stairPackageStandingImg" class="hidden">
+                                <img src="4.jpg"  alt="楼道带包装直立入户测量示意图" class="measurement-img w-full h-auto">
+                                <p class="text-sm text-gray-600 mt-2">带包装直立入户需测量楼道转角宽度A和扶手深度B</p>
+                            </div>
+                            
+                            <div id="stairPackageVerticalImg" class="hidden">
+                                <img src="5.jpg"  alt="楼道带包装竖立入户测量示意图" class="measurement-img w-full h-auto">
+                                <p class="text-sm text-gray-600 mt-2">带包装竖立入户需测量楼道转角高度H</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-between">
+                    <button onclick="backToStep(2)" class="px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50">
+                        <i class="fas fa-arrow-left mr-2"></i> 上一步 
+                    </button>
+                    <button id="checkStaircase" class="btn-primary px-6 py-3 rounded-lg font-medium">
+                        检查入户条件 <i class="fas fa-check ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 步骤3C: 阳台/窗户测量 -->
+            <div id="step3C" class="card p-6 mb-8 hidden">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">3. 阳台/窗户测量 (吊装入户)</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="mb-6">
+                            <p class="text-gray-700 mb-4">您选购的98英寸电视因电梯/楼道尺寸限制，常规入户存在困难。可继续完成吊装入户勘测，评估通过阳台/门窗实施吊装方案可行性，相关吊装费用需由您自行承担。</p>
+                            
+                            <label class="block text-lg font-medium text-gray-700 mb-3">是否同意吊装入户？</label>
+                            <div class="flex space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="agreeWindow" value="yes" class="h-5 w-5 text-red-600 focus:ring-red-500">
+                                    <span class="ml-2 text-gray-700">同意</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="agreeWindow" value="no" class="h-5 w-5 text-red-600 focus:ring-red-500">
+                                    <span class="ml-2 text-gray-700">不同意</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="windowMeasurements" class="space-y-4 hidden">
+                            <div>
+                                <label for="windowHeight" class="block text-sm font-medium text-gray-700">阳台/窗户高度 (A, mm)</label>
+                                <input type="number" id="windowHeight" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入阳台/窗户高度">
+                            </div>
+                            
+                            <div>
+                                <label for="windowWidth" class="block text-sm font-medium text-gray-700">阳台/窗户宽度 (B, mm)</label>
+                                <input type="number" id="windowWidth" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="请输入阳台/窗户宽度">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="mb-4">
+                            <h3 class="font-medium text-gray-700 mb-2">测量示意图</h3>
+                            <img src="6.jpg"  alt="阳台/窗户吊装入户测量示意图" class="measurement-img w-full h-auto">
+                            <p class="text-sm text-gray-600 mt-2">吊装入户需测量阳台/窗户高度A和宽度B</p>
+                        </div>
+                        
+                        <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                            <h4 class="font-medium text-red-800 mb-2">重要提示</h4>
+                            <p class="text-sm text-red-700">吊装入户需额外支付吊装费用，具体费用将由安装工程师根据现场情况评估后确定。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-between">
+                    <button onclick="backToStep(2)" class="px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50">
+                        <i class="fas fa-arrow-left mr-2"></i> 上一步 
+                    </button>
+                    <button id="checkWindow" class="btn-primary px-6 py-3 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        检查入户条件 <i class="fas fa-check ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 步骤4: 勘测结果 -->
+            <div id="step4" class="card p-6 mb-8 hidden">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">4. 勘测结果</h2>
+                
+                <div id="surveyResult" class="space-y-6">
+                    <!-- 结果内容将通过JavaScript动态生成 -->
+                </div>
+                
+                <div class="mt-8 flex justify-between">
+                    <button onclick="backToStep(3)" class="px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50">
+                        <i class="fas fa-arrow-left mr-2"></i> 重新测量 
+                    </button>
+                    <button id="confirmSurvey" class="btn-primary px-6 py-3 rounded-lg font-medium">
+                        确认勘测结果 <i class="fas fa-check-circle ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 步骤5: 最终确认 -->
+            <div id="step5" class="card p-6 mb-8 hidden">
+                <div class="text-center py-8">
+                    <div class="inline-block bg-green-100 p-4 rounded-full mb-6">
+                        <i class="fas fa-check-circle text-green-600 text-5xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">勘测完成！</h2>
+                    
+                    <div id="finalResult" class="max-w-2xl mx-auto text-left bg-gray-50 p-6 rounded-lg">
+                        <!-- 最终结果内容将通过JavaScript动态生成 -->
+                    </div>
+                    
+                    <div class="mt-8 bg-blue-50 p-6 rounded-lg border border-blue-200 max-w-2xl mx-auto">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-3">下一步操作</h3>
+                        <p class="text-blue-700 mb-4">请拨打TCL官方客服热线，我们将尽快为您安排上门安装服务。</p>
+                        <div class="bg-white p-4 rounded-lg inline-block">
+                            <p class="text-2xl font-bold text-red-600">400-812-3456</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- 安装勘测 -->
-        <div class="card" id="installation-section" style="display: none;">
-            <h2>3. 安装勘测</h2>
-            <p>您的电视型号 <strong id="selected-tv-model"></strong> 已满足入户条件。</p>
-            <p>请填写以下安装信息：</p>
-            
-            <div class="form-group">
-                <label for="wall-type">墙面类型</label>
-                <select id="wall-type" class="form-control">
-                    <option value="">请选择墙面类型</option>
-                    <option value="concrete">混凝土墙</option>
-                    <option value="brick">砖墙</option>
-                    <option value="drywall">石膏板/轻质墙</option>
-                    <option value="other">其他</option>
-                </select>
+    </main>
+ 
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <img src="D:1.png"  alt="TCL Logo" class="h-10">
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-gray-400">© 2025 TCL实业控股有限公司 版权所有</p>
+                    <p class="text-sm text-gray-400 mt-1">客户服务热线: 400-812-3456</p>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label for="installation-date">期望安装日期</label>
-                <input type="date" id="installation-date" class="form-control">
-            </div>
-            
-            <div class="form-group">
-                <label for="special-requirements">特殊要求</label>
-                <textarea id="special-requirements" class="form-control" rows="3" placeholder="如有特殊安装要求，请在此说明"></textarea>
-            </div>
-            
-            <button class="btn btn-primary btn-block" id="submit-request">提交安装申请</button>
         </div>
-    </div>
+    </footer>
  
     <script>
+        // 电视型号尺寸数据 
+        const tvModels = {
+            "98C78K": { naked: "2180×61×1247", package: "2384×215×1430" },
+            "98Z11K Pro": { naked: "2180×61×1247", package: "2384×215×1430" },
+            "98Q10L": { naked: "2166×54×1236", package: "2384×215×1430" },
+            "98Q10L Pro": { naked: "2166×54×1236", package: "2384×215×1430" },
+            "98C12K": { naked: "2166×54×1236", package: "2384×215×1430" },
+            "98P12K": { naked: "2180×61×1247", package: "2384×215×1430" },
+            "98T6L-C": { naked: "2178×64×1247", package: "2384×215×1430" },
+            "98T6L": { naked: "2178×64×1247", package: "2384×215×1430" },
+            "98P11K": { naked: "2178×64×1247", package: "2384×215×1430" },
+            "98T7L Pro": { naked: "2178×64×1247", package: "2384×215×1420" },
+            "98T7L": { naked: "2178×64×1247", package: "2384×215×1430" },
+            "98Q9L Pro": { naked: "2180×64×1247", package: "2384×215×1430" },
+            "98Q9L-C": { naked: "2180×64×1247", package: "2384×215×1430" },
+            "98Q6G": { naked: "2178×82×1247", package: "2384×215×1430" },
+            "98C11K": { naked: "2180×61×1247", package: "2384×215×1430" },
+            "98GA2": { naked: "2178×82×1247", package: "2384×215×1430" },
+            "98T8H": { naked: "2179×71×1247", package: "2384×245×1430" },
+            "98C11H": { naked: "2179×71×1248", package: "2384×245×1430" },
+            "98Q6K": { naked: "2179×71×1248", package: "2384×245×1430" },
+            "98X11H": { naked: "2177×27×1246", package: "2384×307×1430" },
+            "98T7K": { naked: "2179×71×1247", package: "2384×245×1430" },
+            "98Q10K Pro": { naked: "2179×71×1248", package: "2384×245×1430" },
+            "98Q10K": { naked: "2179×71×1248", package: "2384×245×1430" },
+            "98Q9K": { naked: "2179×71×1248", package: "2384×245×1430" },
+            "98C12H": { naked: "2178×41×1250", package: "2384×255×1435" },
+            "98G60E": { naked: "2179×71×1247", package: "2384×245×1430" },
+            "98Q6H": { naked: "2179×69×1248", package: "2384×245×1430" },
+            "98GA1": { naked: "2182×101×1261", package: "2384×250×1430" },
+            "98Q10G Pro": { naked: "2182×101×1261", package: "2384×250×1430" },
+            "98C12G": { naked: "2178×41×1250", package: "2384×250×1430" },
+            "98T7H": { naked: "2182×101×1261", package: "2384×250×1430" },
+            "98X11G": { naked: "2178×41×1250", package: "2384×250×1430" },
+            "M98A": { naked: "2177×68×1247", package: "2384×245×1430" }
+        };
+ 
+        // 当前选择的电视型号和楼层信息 
+        let currentTvModel = null;
+        let currentFloorType = null;
+        let currentFloorNumber = null;
+        let currentSurveyMethod = null;
+ 
+        // DOM元素 
+        const tvModelSelect = document.getElementById('tvModel'); 
+        const floorTypeSelect = document.getElementById('floorType'); 
+        const otherFloorInfo = document.getElementById('otherFloorInfo'); 
+        const floorNumberInput = document.getElementById('floorNumber'); 
+        const tvDimensions = document.getElementById('tvDimensions'); 
+        const nakedSizeDisplay = document.getElementById('nakedSize'); 
+        const packageSizeDisplay = document.getElementById('packageSize'); 
+        const nextStep1Btn = document.getElementById('nextStep1'); 
+        
+        // 步骤容器 
+        const step1 = document.getElementById('step1'); 
+        const step2 = document.getElementById('step2'); 
+        const step3A = document.getElementById('step3A'); 
+        const step3B = document.getElementById('step3B'); 
+        const step3C = document.getElementById('step3C'); 
+        const step4 = document.getElementById('step4'); 
+        const step5 = document.getElementById('step5'); 
+        
+        // 电梯测量相关元素 
+        const elevatorMeasurements = document.getElementById('elevatorMeasurements'); 
+        const checkElevatorBtn = document.getElementById('checkElevator'); 
+        const showVerticalImgBtn = document.getElementById('showVerticalImg'); 
+        const showStandingImgBtn = document.getElementById('showStandingImg'); 
+        const elevatorVerticalImg = document.getElementById('elevatorVerticalImg'); 
+        const elevatorStandingImg = document.getElementById('elevatorStandingImg'); 
+        
+        // 楼道测量相关元素 
+        const checkStaircaseBtn = document.getElementById('checkStaircase'); 
+        const stairFeeInfo = document.getElementById('stairFeeInfo'); 
+        const stairFeeAmount = document.getElementById('stairFeeAmount'); 
+        const showStairStandingImgBtn = document.getElementById('showStairStandingImg'); 
+        const showStairPackageStandingImgBtn = document.getElementById('showStairPackageStandingImg'); 
+        const showStairPackageVerticalImgBtn = document.getElementById('showStairPackageVerticalImg'); 
+        const stairStandingImg = document.getElementById('stairStandingImg'); 
+        const stairPackageStandingImg = document.getElementById('stairPackageStandingImg'); 
+        const stairPackageVerticalImg = document.getElementById('stairPackageVerticalImg'); 
+        
+        // 窗户测量相关元素 
+        const windowMeasurements = document.getElementById('windowMeasurements'); 
+        const checkWindowBtn = document.getElementById('checkWindow'); 
+        
+        // 结果展示相关元素 
+        const surveyResult = document.getElementById('surveyResult'); 
+        const confirmSurveyBtn = document.getElementById('confirmSurvey'); 
+        const finalResult = document.getElementById('finalResult'); 
+ 
+        // 事件监听器 
         document.addEventListener('DOMContentLoaded',  function() {
-            // 步骤导航 
-            const nextToMeasurementBtn = document.getElementById('next-to-measurement'); 
-            const nextToInstallationBtn = document.getElementById('next-to-installation'); 
-            const submitRequestBtn = document.getElementById('submit-request'); 
+            // 电视型号选择变化 
+            tvModelSelect.addEventListener('change',  function() {
+                currentTvModel = this.value; 
+                if (currentTvModel) {
+                    const dimensions = tvModels[currentTvModel];
+                    nakedSizeDisplay.textContent  = dimensions.naked.replace('×',  ' mm × ').replace('×', ' mm × ') + ' mm';
+                    packageSizeDisplay.textContent  = dimensions.package.replace('×',  ' mm × ').replace('×', ' mm × ') + ' mm';
+                    tvDimensions.classList.remove('hidden'); 
+                } else {
+                    tvDimensions.classList.add('hidden'); 
+                }
+                updateNextStep1Btn();
+            });
             
-            // 电视型号选择 
-            const tvSelectionSection = document.getElementById('tv-selection'); 
-            const measurementSection = document.getElementById('measurement-section'); 
-            const installationSection = document.getElementById('installation-section'); 
+            // 楼层类型选择变化 
+            floorTypeSelect.addEventListener('change',  function() {
+                currentFloorType = this.value; 
+                if (currentFloorType === 'other') {
+                    otherFloorInfo.classList.remove('hidden'); 
+                } else {
+                    otherFloorInfo.classList.add('hidden'); 
+                    currentFloorNumber = null;
+                }
+                updateNextStep1Btn();
+            });
             
-            // 入户方式选项卡 
-            const tabs = document.querySelectorAll('.nav-tab'); 
-            const tabContents = document.querySelectorAll('.tab-content'); 
+            // 楼层数字输入变化 
+            floorNumberInput.addEventListener('input',  function() {
+                currentFloorNumber = this.value  ? parseInt(this.value)  : null;
+                updateNextStep1Btn();
+            });
             
-            // 电梯入户 
-            const checkElevatorBtn = document.getElementById('check-elevator'); 
-            const elevatorResult = document.getElementById('elevator-result'); 
+            // 下一步按钮点击 
+            nextStep1Btn.addEventListener('click',  function() {
+                if (currentFloorType === '1') {
+                    // 直接进入最终确认页面 
+                    showFinalResult('1层/平房/别墅安装无需勘测');
+                } else {
+                    // 进入勘测方法选择页面 
+                    step1.classList.add('hidden'); 
+                    step2.classList.remove('hidden'); 
+                }
+            });
             
-            // 楼道入户 
-            const checkHallwayBtn = document.getElementById('check-hallway'); 
-            const hallwayResult = document.getElementById('hallway-result'); 
-            
-            // 吊装入户 
-            const checkHoistingBtn = document.getElementById('check-hoisting'); 
-            const hoistingResult = document.getElementById('hoisting-result'); 
-            
-            // 推荐型号 
-            const recommendationSection = document.getElementById('recommendation-section'); 
-            const tvModels = document.querySelectorAll('.tv-model'); 
-            const selectRecommendedBtn = document.getElementById('select-recommended'); 
-            
-            // 当前选中的电视型号 
-            let selectedTvModel = '';
-            let currentMethod = 'elevator';
-            
-            // 切换选项卡 
-            tabs.forEach(tab  => {
-                tab.addEventListener('click',  function() {
-                    const tabId = this.getAttribute('data-tab'); 
-                    
-                    // 更新活动选项卡 
-                    tabs.forEach(t  => t.classList.remove('active')); 
-                    this.classList.add('active'); 
-                    
-                    // 更新活动内容 
-                    tabContents.forEach(content  => {
-                        content.classList.remove('active'); 
-                        if (content.id  === `${tabId}-tab`) {
-                            content.classList.add('active'); 
-                        }
-                    });
-                    
-                    currentMethod = tabId;
+            // 电梯测量相关事件 
+            document.querySelectorAll('input[name="hasElevator"]').forEach(radio  => {
+                radio.addEventListener('change',  function() {
+                    if (this.value  === 'yes') {
+                        elevatorMeasurements.classList.remove('hidden'); 
+                        checkElevatorBtn.disabled  = false;
+                    } else {
+                        elevatorMeasurements.classList.add('hidden'); 
+                        checkElevatorBtn.disabled  = true;
+                    }
                 });
             });
             
-            // 下一步：选择电视型号 -> 入户测量 
-            nextToMeasurementBtn.addEventListener('click',  function() {
-                const tvModel = document.getElementById('tv-model').value; 
-                
-                if (!tvModel) {
-                    alert('请选择电视型号');
-                    return;
-                }
-                
-                selectedTvModel = tvModel;
-                document.getElementById('selected-tv-model').textContent  = getTvModelName(tvModel);
-                
-                tvSelectionSection.style.display  = 'none';
-                measurementSection.style.display  = 'block';
-                
-                // 更新进度条和步骤指示器 
-                document.getElementById('progress').style.width  = '66%';
-                document.getElementById('step1').classList.remove('active'); 
-                document.getElementById('step1').classList.add('completed'); 
-                document.getElementById('step2').classList.add('active'); 
+            // 电梯测量图片切换 
+            showVerticalImgBtn.addEventListener('click',  function() {
+                elevatorVerticalImg.classList.remove('hidden'); 
+                elevatorStandingImg.classList.add('hidden'); 
+                showVerticalImgBtn.classList.add('border-red-500',  'text-red-500');
+                showStandingImgBtn.classList.remove('border-red-500',  'text-red-500');
+            });
+            
+            showStandingImgBtn.addEventListener('click',  function() {
+                elevatorVerticalImg.classList.add('hidden'); 
+                elevatorStandingImg.classList.remove('hidden'); 
+                showVerticalImgBtn.classList.remove('border-red-500',  'text-red-500');
+                showStandingImgBtn.classList.add('border-red-500',  'text-red-500');
             });
             
             // 检查电梯入户条件 
             checkElevatorBtn.addEventListener('click',  function() {
-                const doorHeight = parseInt(document.getElementById('elevator-door-height').value); 
-                const doorWidth = parseInt(document.getElementById('elevator-door-width').value); 
-                const depth = parseInt(document.getElementById('elevator-depth').value); 
+                const doorWidth = parseInt(document.getElementById('elevatorDoorWidth').value); 
+                const doorHeight = parseInt(document.getElementById('elevatorDoorHeight').value); 
+                const cabinDepth = parseInt(document.getElementById('elevatorCabinDepth').value); 
+                let cabinDiagonal = parseInt(document.getElementById('elevatorCabinDiagonal').value); 
                 
-                if (isNaN(doorHeight) || isNaN(doorWidth) || isNaN(depth)) {
-                    alert('请填写完整的电梯尺寸信息');
-                    return;
+                if (!cabinDiagonal && doorWidth && doorHeight) {
+                    // 计算对角线 
+                    cabinDiagonal = Math.sqrt(Math.pow(doorWidth,  2) + Math.pow(doorHeight,  2));
                 }
                 
-                // 计算对角线 
-                const diagonal = Math.sqrt(Math.pow(doorHeight,  2) + Math.pow(doorWidth,  2));
+                const tvNaked = tvModels[currentTvModel].naked.split('×').map(Number); 
+                const tvPackage = tvModels[currentTvModel].package.split('×').map(Number); 
                 
-                // 根据电视型号检查入户条件 
-                let meetsRequirements = false;
-                let message = '';
+                let results = [];
                 
-                switch(selectedTvModel) {
-                    case '98C78K':
-                        meetsRequirements = diagonal >= 2241 && depth >= 1247;
-                        message = meetsRequirements 
-                            ? '符合该98英寸电视电梯入户标准'
-                            : '电梯尺寸不足，无法满足该98英寸电视入户要求';
-                        break;
-                    case '85Q9K':
-                        meetsRequirements = diagonal >= 2000 && depth >= 1100;
-                        message = meetsRequirements 
-                            ? '符合85英寸电视电梯入户标准'
-                            : '电梯尺寸不足，无法满足85英寸电视入户要求';
-                        break;
-                    case '98Z11K Pro':
-                        meetsRequirements = diagonal >=  2241 && depth >= 1247;
-                        message = meetsRequirements 
-                            ? '符合该9英寸电视电梯入户标准'
-                            : '电梯尺寸不足，无法满足该98英寸电视入户要求';
-                        break;
-                    case '98Q10L':
-                        meetsRequirements = diagonal >= 2220 && depth >= 1236;
-                        message = meetsRequirements 
-                            ? '符合该98英寸电视电梯入户标准'
-                            : '电梯尺寸不足，无法满足该98英寸电视入户要求';
-                        break;
-                    case '98X11G':
-                        meetsRequirements = diagonal >= 2245 && depth >= 1247;
-                        message = meetsRequirements 
-                            ? '符合98英寸电视电梯入户标准'
-                            : '电梯尺寸不足，无法满足该98英寸电视入户要求';
-                        break;
+                // 检查裸机竖立入户条件 
+                const verticalDiagonal = Math.sqrt(Math.pow(doorWidth,  2) + Math.pow(doorHeight,  2));
+                const verticalCondition1 = verticalDiagonal >= (tvNaked[0] + tvNaked[1]);
+                const verticalCondition2 = cabinDepth >= tvNaked[2];
+                
+                if (verticalCondition1 && verticalCondition2) {
+                    results.push(' 满足电梯裸机竖立入户条件');
                 }
                 
-                // 显示结果 
-                elevatorResult.textContent  = message;
-                elevatorResult.className  = 'result ' + (meetsRequirements ? 'result-success' : 'result-danger');
-                elevatorResult.style.display  = 'block';
+                // 检查裸机直立入户条件 
+                if (cabinDiagonal >= (tvNaked[0] + tvNaked[1])) {
+                    results.push(' 满足电梯裸机直立入户条件');
+                }
                 
-                // 如果符合条件，显示下一步按钮 
-                if (meetsRequirements) {
-                    nextToInstallationBtn.style.display  = 'block';
-                    recommendationSection.style.display  = 'none';
+                if (results.length  > 0) {
+                    showSurveyResult(results.join('<br>'),  true);
                 } else {
-                    nextToInstallationBtn.style.display  = 'none';
-                    showRecommendations();
+                    showSurveyResult('当前电梯尺寸无法满足入户条件，请尝试其他入户方式', false);
                 }
+            });
+            
+            // 楼道测量图片切换 
+            showStairStandingImgBtn.addEventListener('click',  function() {
+                stairStandingImg.classList.remove('hidden'); 
+                stairPackageStandingImg.classList.add('hidden'); 
+                stairPackageVerticalImg.classList.add('hidden'); 
+                updateStairImgButtons('standing');
+            });
+            
+            showStairPackageStandingImgBtn.addEventListener('click',  function() {
+                stairStandingImg.classList.add('hidden'); 
+                stairPackageStandingImg.classList.remove('hidden'); 
+                stairPackageVerticalImg.classList.add('hidden'); 
+                updateStairImgButtons('packageStanding');
+            });
+            
+            showStairPackageVerticalImgBtn.addEventListener('click',  function() {
+                stairStandingImg.classList.add('hidden'); 
+                stairPackageStandingImg.classList.add('hidden'); 
+                stairPackageVerticalImg.classList.remove('hidden'); 
+                updateStairImgButtons('packageVertical');
             });
             
             // 检查楼道入户条件 
-            checkHallwayBtn.addEventListener('click',  function() {
-                const turnWidth = parseInt(document.getElementById('hallway-turn-width').value); 
-                const railDepth = parseInt(document.getElementById('hallway-rail-depth').value); 
-                const turnHeight = parseInt(document.getElementById('hallway-turn-height').value); 
+            checkStaircaseBtn.addEventListener('click',  function() {
+                const turnWidth = parseInt(document.getElementById('stairTurnWidth').value); 
+                const railDepth = parseInt(document.getElementById('stairRailDepth').value); 
+                const turnHeight = parseInt(document.getElementById('stairTurnHeight').value); 
                 
-                if (isNaN(turnWidth) || isNaN(railDepth) || isNaN(turnHeight)) {
-                    alert('请填写完整的楼道尺寸信息');
-                    return;
+                const tvNaked = tvModels[currentTvModel].naked.split('×').map(Number); 
+                const tvPackage = tvModels[currentTvModel].package.split('×').map(Number); 
+                
+                let results = [];
+                
+                // 检查楼道裸机直立入户 
+                if (turnWidth && railDepth) {
+                    const diagonal = Math.sqrt(Math.pow(turnWidth,  2) + Math.pow(railDepth,  2));
+                    if (diagonal >= (tvNaked[0] + tvNaked[1] + 10)) {
+                        results.push(' 满足楼道裸机直立入户条件');
+                    }
                 }
                 
-                // 计算有效宽度 
-                
-           const effectiveWidth = Math.sqrt(Math.pow(turnWidth,  2) + Math.pow(railDepth, 2));
-                
-                // 根据电视型号检查入户条件 
-                let meetsRequirements = false;
-                let message = '';
-                
-                switch(selectedTvModel) {
-                    case '98C78K':
-                        meetsRequirements = effectiveWidth >= 2251 ||  turnHeight >= 2584;
-                        message = meetsRequirements 
-                            ? '符合该98英寸电视楼道入户标准'
-                            : '楼道尺寸不足，无法满足该98英寸电视入户要求';
-                        break;
-                    case '85Q9K':
-                        meetsRequirements = effectiveWidth >= 2000 && turnHeight >= 1100;
-                        message = meetsRequirements 
-                            ? '符合85英寸电视楼道入户标准'
-                            : '楼道尺寸不足，无法满足85英寸电视入户要求';
-                        break;
-                    case '98Z11K Pro':
-                        meetsRequirements = effectiveWidth >= 2251 && turnHeight >= 2584;
-                        message = meetsRequirements 
-                            ? '符合该98英寸电视楼道入户标准'
-                            : '楼道尺寸不足，无法满足该98英寸电视入户要求';
-                        break;
-                    case '98Q10L':
-                        meetsRequirements = effectiveWidth >= 2230 && turnHeight >= 2584;
-                        message = meetsRequirements 
-                            ? '符合65英寸电视楼道入户标准'
-                            : '楼道尺寸不足，无法满足65英寸电视入户要求';
-                        break;
-                    case '98X11G':
-                        meetsRequirements = effectiveWidth >=2229 && turnHeight >=  2584;
-                        message = meetsRequirements 
-                            ? '符合该98英寸电视楼道入户标准'
-                            : '楼道尺寸不足，无法满足该98英寸电视入户要求';
-                        break;
+                // 检查楼道带包装直立入户 
+                if (turnWidth && railDepth) {
+                    const diagonal = Math.sqrt(Math.pow(turnWidth,  2) + Math.pow(railDepth,  2));
+                    if (diagonal >= (tvPackage[0] + tvPackage[1])) {
+                        results.push(' 满足楼道带包装直立入户条件');
+                    }
                 }
                 
-                // 显示结果 
-                hallwayResult.textContent  = message;
-                hallwayResult.className  = 'result ' + (meetsRequirements ? 'result-success' : 'result-danger');
-                hallwayResult.style.display  = 'block';
+                // 检查楼道带包装竖立入户 
+                if (turnHeight && turnHeight >= (tvPackage[0] + 200)) {
+                    results.push(' 满足楼道带包装竖立入户条件');
+                }
                 
-                // 如果符合条件，显示下一步按钮 
-                if (meetsRequirements) {
-                    nextToInstallationBtn.style.display  = 'block';
-                    recommendationSection.style.display  = 'none';
+                // 计算搬运费用 
+                if (currentFloorNumber && currentFloorNumber > 3) {
+                    const fee = (currentFloorNumber - 3) * 50;
+                    stairFeeAmount.textContent  = fee;
+                    stairFeeInfo.classList.remove('hidden'); 
                 } else {
-                    nextToInstallationBtn.style.display  = 'none';
-                    showRecommendations();
-                }
-            });
-            
-            // 检查吊装入户条件 
-            checkHoistingBtn.addEventListener('click',  function() {
-                const windowHeight = parseInt(document.getElementById('window-height').value); 
-                const windowWidth = parseInt(document.getElementById('window-width').value); 
-                const agreeHoisting = document.getElementById('agree-hoisting').checked; 
-                
-                if (isNaN(windowHeight) || isNaN(windowWidth)) {
-                    alert('请填写完整的阳台/窗户尺寸信息');
-                    return;
+                    stairFeeInfo.classList.add('hidden'); 
                 }
                 
-                if (!agreeHoisting) {
-                    alert('请确认您了解并同意吊装入户的额外费用');
-                    return;
-                }
-                
-                // 根据电视型号检查入户条件 
-                let meetsRequirements = false;
-                let message = '';
-                
-                switch(selectedTvModel) {
-                    case '98C78K':
-                        meetsRequirements = windowHeight >= 1530 && windowWidth >= 315;
-                        message = meetsRequirements 
-                            ? '符合98英寸电视吊装入户标准'
-                            : '阳台/窗户尺寸不足，无法满足98英寸电视吊装要求';
-                        break;
-                    case '85Q9K':
-                        meetsRequirements = windowHeight >= 1400 && windowWidth >= 300;
-                        message = meetsRequirements 
-                            ? '符合该85英寸电视吊装入户标准'
-                            : '阳台/窗户尺寸不足，无法满足该85英寸电视吊装要求';
-                        break;
-                    case '98Z11K Pro':
-                        meetsRequirements = windowHeight >=  1530  && windowWidth >= 315;
-                        message = meetsRequirements 
-                            ? '符合该98英寸电视吊装入户标准'
-                            : '阳台/窗户尺寸不足，无法满足该98英寸电视吊装要求';
-                        break;
-                    case '98Q10L':
-                        meetsRequirements = windowHeight >= 1530 && windowWidth >= 315;
-                        message = meetsRequirements 
-                            ? '符合该98英寸电视吊装入户标准'
-                            : '阳台/窗户尺寸不足，无法满足该98英寸电视吊装要求';
-                        break;
-                    case '98X11G':
-                        meetsRequirements = windowHeight >= 1530 && windowWidth >=345;
-                        message = meetsRequirements 
-                            ? '符合55英寸电视吊装入户标准'
-                            : '阳台/窗户尺寸不足，无法满足55英寸电视吊装要求';
-                        break;
-                }
-                
-                // 显示结果 
-                hoistingResult.textContent  = message;
-                hoistingResult.className  = 'result ' + (meetsRequirements ? 'result-success' : 'result-danger');
-                hoistingResult.style.display  = 'block';
-                
-                // 如果符合条件，显示下一步按钮 
-                if (meetsRequirements) {
-                    nextToInstallationBtn.style.display  = 'block';
-                    recommendationSection.style.display  = 'none';
+                if (results.length  > 0) {
+                    showSurveyResult(results.join('<br>'),  true);
                 } else {
-                    nextToInstallationBtn.style.display  = 'none';
-                    showRecommendations();
+                    showSurveyResult('当前楼道尺寸无法满足入户条件，请尝试其他入户方式', false);
                 }
             });
             
-            // 下一步：入户测量 -> 安装勘测 
-            nextToInstallationBtn.addEventListener('click',  function() {
-                measurementSection.style.display  = 'none';
-                installationSection.style.display  = 'block';
-                
-                // 更新进度条和步骤指示器 
-                document.getElementById('progress').style.width  = '100%';
-                document.getElementById('step2').classList.remove('active'); 
-                document.getElementById('step2').classList.add('completed'); 
-                document.getElementById('step3').classList.add('active'); 
-            });
-            
-            // 提交安装申请 
-            submitRequestBtn.addEventListener('click',  function() {
-                const wallType = document.getElementById('wall-type').value; 
-                const installationDate = document.getElementById('installation-date').value; 
-                
-                if (!wallType) {
-                    alert('请选择墙面类型');
-                    return;
-                }
-                
-                if (!installationDate) {
-                    alert('请选择安装日期');
-                    return;
-                }
-                
-                alert(`安装申请已提交！\n\n电视型号: ${getTvModelName(selectedTvModel)}\n安装日期: ${installationDate}\n\n我们的客服将尽快与您确认安装细节。`);
-            });
-            
-            // 选择推荐型号 
-            tvModels.forEach(model  => {
-                model.addEventListener('click',  function() {
-                    tvModels.forEach(m  => m.classList.remove('selected')); 
-                    this.classList.add('selected'); 
-                    
-                    const modelId = this.getAttribute('data-model'); 
-                    selectRecommendedBtn.style.display  = 'block';
-                    selectRecommendedBtn.onclick  = function() {
-                        selectedTvModel = modelId;
-                        document.getElementById('selected-tv-model').textContent  = getTvModelName(modelId);
-                        document.getElementById('tv-model').value  = modelId;
-                        
-                        // 隐藏推荐部分，显示下一步按钮 
-                        recommendationSection.style.display  = 'none';
-                        nextToInstallationBtn.style.display  = 'block';
-                    };
+            // 窗户测量相关事件 
+            document.querySelectorAll('input[name="agreeWindow"]').forEach(radio  => {
+                radio.addEventListener('change',  function() {
+                    if (this.value  === 'yes') {
+                        windowMeasurements.classList.remove('hidden'); 
+                        checkWindowBtn.disabled  = false;
+                    } else {
+                        windowMeasurements.classList.add('hidden'); 
+                        checkWindowBtn.disabled  = true;
+                    }
                 });
             });
             
-            // 显示推荐型号 
-            function showRecommendations() {
-                recommendationSection.style.display  = 'block';
+            // 检查窗户入户条件 
+            checkWindowBtn.addEventListener('click',  function() {
+                const windowHeight = parseInt(document.getElementById('windowHeight').value); 
+                const windowWidth = parseInt(document.getElementById('windowWidth').value); 
                 
-                // 根据当前测量方法筛选推荐型号 
-                const elevatorDoorHeight = parseInt(document.getElementById('elevator-door-height').value)  || 0;
-                const elevatorDoorWidth = parseInt(document.getElementById('elevator-door-width').value)  || 0;
-                const elevatorDepth = parseInt(document.getElementById('elevator-depth').value)  || 0;
-                const elevatorDiagonal = Math.sqrt(Math.pow(elevatorDoorHeight,  2) + Math.pow(elevatorDoorWidth,  2));
+                const tvPackage = tvModels[currentTvModel].package.split('×').map(Number); 
                 
-                const hallwayTurnWidth = parseInt(document.getElementById('hallway-turn-width').value)  || 0;
-                const hallwayRailDepth = parseInt(document.getElementById('hallway-rail-depth').value)  || 0;
-                const hallwayEffectiveWidth = hallwayTurnWidth - hallwayRailDepth;
+                // 检查吊装入户条件 
+                const condition1 = windowHeight >= (tvPackage[2] + 100) && windowWidth >= tvPackage[1];
+                const condition2 = windowHeight >= (tvPackage[1] + 10) && windowWidth >= (tvPackage[2] + 10);
                 
-                const windowHeight = parseInt(document.getElementById('window-height').value)  || 0;
-                const windowWidth = parseInt(document.getElementById('window-width').value)  || 0;
-                
-                // 根据当前测量方法显示/隐藏推荐型号 
-                tvModels.forEach(model  => {
-                    const modelId = model.getAttribute('data-model'); 
-                    let showModel = false;
-                    
-                    if (currentMethod === 'elevator') {
-                        switch(modelId) {
-                            case '85X95K':
-                                showModel = elevatorDiagonal >= 2000 && elevatorDepth >= 1100;
-                                break;
-                            case '75Q10G':
-                                showModel = elevatorDiagonal >= 1900 && elevatorDepth >= 1000;
-                                break;
-                            case '65A80K':
-                                showModel = elevatorDiagonal >= 1800 && elevatorDepth >= 900;
-                                break;
-                        }
-                    } else if (currentMethod === 'hallway') {
-                        switch(modelId) {
-                            case '85X95K':
-                                showModel = hallwayEffectiveWidth >= 2000;
-                                break;
-                            case '75Q10G':
-                                showModel = hallwayEffectiveWidth >= 1900;
-                                break;
-                            case '65A80K':
-                                showModel = hallwayEffectiveWidth >= 1800;
-                                break;
-                        }
-                    } else if (currentMethod === 'hoisting') {
-                        switch(modelId) {
-                            case '85X95K':
-                                showModel = windowHeight >= 1400 && windowWidth >= 300;
-                                break;
-                            case '75Q10G':
-                                showModel = windowHeight >= 1300 && windowWidth >= 280;
-                                break;
-                            case '65A80K':
-                                showModel = windowHeight >= 1200 && windowWidth >= 260;
-                                break;
-                        }
-                    }
-                    
-                    model.style.display  = showModel ? 'flex' : 'none';
-                });
-                
-                // 如果没有推荐型号，显示提示 
-                const visibleModels = Array.from(tvModels).filter(m  => m.style.display  !== 'none');
-                if (visibleModels.length  === 0) {
-                    const noRecommendation = document.createElement('div'); 
-                    noRecommendation.className  = 'result result-warning';
-                    noRecommendation.textContent  = '根据您的测量数据，暂无符合入户条件的电视型号。';
-                    noRecommendation.style.display  = 'block';
-                    
-                    // 如果已有提示，先移除 
-                    const existingWarning = recommendationSection.querySelector('.result'); 
-                    if (existingWarning) {
-                        existingWarning.remove(); 
-                    }
-                    
-                    recommendationSection.insertBefore(noRecommendation,  recommendationSection.firstChild); 
+                if (condition1 || condition2) {
+                    showSurveyResult('满足阳台/窗户吊装入户条件', true);
+                } else {
+                    showSurveyResult('当前阳台/窗户尺寸无法满足吊装入户条件', false);
                 }
-            }
+            });
             
-            // 获取电视型号名称 
-            function getTvModelName(modelId) {
-                switch(modelId) {
-                    case '98C78K': return 'TCL 98C78K (98英寸)';
-                    case '85X95K': return 'Sony 85X95K (85英寸)';
-                    case '75Q10G': return 'Hisense 75Q10G (75英寸)';
-                    case '65A80K': return 'Sony 65A80K (65英寸)';
-                    case '55C735': return 'TCL 55C735 (55英寸)';
-                    default: return modelId;
+            // 确认勘测结果 
+            confirmSurveyBtn.addEventListener('click',  function() {
+                let resultText = surveyResult.innerHTML; 
+                
+                // 根据不同的勘测方法生成不同的最终结果 
+                let finalText = '';
+                if (currentSurveyMethod === 'elevator') {
+                    finalText = `<p class="mb-4">您选择的电视型号: <strong>${currentTvModel}</strong></p>
+                                <p class="mb-4">安装楼层: <strong>${currentFloorNumber}层</strong></p>
+                                <p class="mb-4">入户方式: <strong class="text-green-600">电梯入户</strong></p>
+                                ${resultText}`;
+                } else if (currentSurveyMethod === 'staircase') {
+                    let feeText = '';
+                    if (currentFloorNumber > 3) {
+                        const fee = (currentFloorNumber - 3) * 50;
+                        feeText = `<p class="mb-4">超楼层搬运服务费: <strong class="text-red-600">${fee}元</strong></p>`;
+                    }
+                    
+                    finalText = `<p class="mb-4">您选择的电视型号: <strong>${currentTvModel}</strong></p>
+                                <p class="mb-4">安装楼层: <strong>${currentFloorNumber}层</strong></p>
+                                <p class="mb-4">入户方式: <strong class="text-green-600">楼道入户</strong></p>
+                                ${resultText}
+                                ${feeText}`;
+                } else if (currentSurveyMethod === 'window') {
+                    finalText = `<p class="mb-4">您选择的电视型号: <strong>${currentTvModel}</strong></p>
+                                <p class="mb-4">安装楼层: <strong>${currentFloorNumber}层</strong></p>
+                                <p class="mb-4">入户方式: <strong class="text-green-600">吊装入户</strong></p>
+                                <p class="mb-4 text-yellow-700">请注意: 吊装入户需额外支付吊装费用，具体费用将由安装工程师现场评估后确定。</p>
+                                ${resultText}`;
                 }
-            }
+                
+                finalResult.innerHTML  = finalText;
+                step4.classList.add('hidden'); 
+                step5.classList.remove('hidden'); 
+            });
         });
+        
+        // 更新第一步的下一步按钮状态 
+        function updateNextStep1Btn() {
+            nextStep1Btn.disabled  = !(currentTvModel && currentFloorType && (currentFloorType === '1' || currentFloorNumber));
+        }
+        
+        // 选择勘测方法 
+        function selectSurveyMethod(method) {
+            currentSurveyMethod = method;
+            step2.classList.add('hidden'); 
+            
+            if (method === 'elevator') {
+                step3A.classList.remove('hidden'); 
+            } else if (method === 'staircase') {
+                step3B.classList.remove('hidden'); 
+            } else if (method === 'window') {
+                step3C.classList.remove('hidden'); 
+            }
+        }
+        
+        // 返回上一步 
+        function backToStep(stepNumber) {
+            step3A.classList.add('hidden'); 
+            step3B.classList.add('hidden'); 
+            step3C.classList.add('hidden'); 
+            step4.classList.add('hidden'); 
+            
+            if (stepNumber === 1) {
+                step2.classList.add('hidden'); 
+                step1.classList.remove('hidden'); 
+            } else if (stepNumber === 2) {
+                step2.classList.remove('hidden'); 
+            } else if (stepNumber === 3) {
+                if (currentSurveyMethod === 'elevator') {
+                    step3A.classList.remove('hidden'); 
+                } else if (currentSurveyMethod === 'staircase') {
+                    step3B.classList.remove('hidden'); 
+                } else if (currentSurveyMethod === 'window') {
+                    step3C.classList.remove('hidden'); 
+                }
+            }
+        }
+        
+        // 更新楼道测量图片按钮状态 
+        function updateStairImgButtons(active) {
+            showStairStandingImgBtn.classList.remove('border-red-500',  'text-red-500');
+            showStairPackageStandingImgBtn.classList.remove('border-red-500',  'text-red-500');
+            showStairPackageVerticalImgBtn.classList.remove('border-red-500',  'text-red-500');
+            
+            if (active === 'standing') {
+                showStairStandingImgBtn.classList.add('border-red-500',  'text-red-500');
+            } else if (active === 'packageStanding') {
+                showStairPackageStandingImgBtn.classList.add('border-red-500',  'text-red-500');
+            } else if (active === 'packageVertical') {
+                showStairPackageVerticalImgBtn.classList.add('border-red-500',  'text-red-500');
+            }
+        }
+        
+        // 显示勘测结果 
+        function showSurveyResult(result, isSuccess) {
+            step3A.classList.add('hidden'); 
+            step3B.classList.add('hidden'); 
+            step3C.classList.add('hidden'); 
+            
+            if (isSuccess) {
+                surveyResult.innerHTML  = `<div class="success-box p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-green-700 mb-3">勘测通过！</h3>
+                    <div class="text-green-700">${result}</div>
+                </div>`;
+            } else {
+                surveyResult.innerHTML  = `<div class="warning-box p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-yellow-700 mb-3">勘测未通过</h3>
+                    <div class="text-yellow-700">${result}</div>
+                </div>`;
+            }
+            
+            step4.classList.remove('hidden'); 
+        }
+        
+        // 显示最终结果（用于1层/平房/别墅直接跳转）
+        function showFinalResult(result) {
+            step1.classList.add('hidden'); 
+            
+            finalResult.innerHTML  = `<div class="success-box p-6 rounded-lg">
+                <h3 class="text-xl font-semibold text-green-700 mb-3">勘测通过！</h3>
+                <p class="mb-4">您选择的电视型号: <strong>${currentTvModel}</strong></p>
+                <p class="mb-4">安装楼层: <strong>1层/平房/别墅</strong></p>
+                <div class="text-green-700">${result}</div>
+            </div>`;
+            
+            step5.classList.remove('hidden'); 
+        }
     </script>
 </body>
 </html>
