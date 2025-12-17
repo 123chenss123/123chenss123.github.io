@@ -654,15 +654,15 @@
                 
                 // 检查裸机竖立入户条件 
                 const verticalDiagonal = Math.sqrt(Math.pow(doorWidth,  2) + Math.pow(doorHeight,  2));
-                const verticalCondition1 = verticalDiagonal >= (tvNaked[0] + tvNaked[1]);
-                const verticalCondition2 = cabinDepth >= tvNaked[2];
+                const verticalCondition1 = verticalDiagonal >= (tvNaked[0] + tvNaked[1]+5);
+                const verticalCondition2 = cabinDepth >= tvNaked[2]+5;
                 
                 if (verticalCondition1 && verticalCondition2) {
                     results.push(' 满足电梯裸机竖立入户条件');
                 }
                 
                 // 检查裸机直立入户条件 
-                if (cabinDiagonal >= (tvNaked[0] + tvNaked[1])) {
+                if (cabinDiagonal >= (tvNaked[0] + tvNaked[1]+5)) {
                     results.push(' 满足电梯裸机直立入户条件');
                 }
                 
@@ -717,7 +717,7 @@
                 // 检查楼道带包装直立入户 
                 if (turnWidth && railDepth) {
                     const diagonal = Math.sqrt(Math.pow(turnWidth,  2) + Math.pow(railDepth,  2));
-                    if (diagonal >= (tvPackage[0] + tvPackage[1])) {
+                    if (diagonal >= (tvPackage[0] + tvPackage[1]+10)) {
                         results.push(' 满足楼道带包装直立入户条件');
                     }
                 }
@@ -905,3 +905,4 @@
     </script>
 </body>
 </html>
+
